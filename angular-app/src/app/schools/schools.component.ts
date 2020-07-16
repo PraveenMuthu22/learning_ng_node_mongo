@@ -7,6 +7,7 @@ import { SchoolsService } from '../common/schools.service';
   templateUrl: './schools.component.html',
   styleUrls: ['./schools.component.css']
 })
+
 export class SchoolsComponent implements OnInit {
 
   title = 'angular-app';
