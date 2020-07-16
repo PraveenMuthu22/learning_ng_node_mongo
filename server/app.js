@@ -9,6 +9,9 @@ const schoolModel = require('./models/School');
 
 const schoolRouter = require('./routes/schoolRouter');
 
+// const mongodbUrl = 'mongodb://localhost/schools';
+const mongodbUrl = 'mongo-cont:27017/schools';
+
 const app = express();
 
 //cors
@@ -26,7 +29,7 @@ app.use(cookieParser());
 app.use('/', schoolRouter);
 
 // connect to database
-mongoose.connect('mongodb://localhost/schools', { useNewUrlParser: true });
+mongoose.connect(mongodbUrl, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
