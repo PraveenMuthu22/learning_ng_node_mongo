@@ -12,9 +12,11 @@
 </head>
 
 <body>
+  <h1> School List </h1>
   <ul *ngFor='let school of schools'>
-    <li> <a> {{school.name}} </a></li>
+    <li> <a> {{school.name}} </a> </li>
   </ul>
+  
   <router-outlet></router-outlet>
 </body>
 
