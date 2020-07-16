@@ -13,34 +13,47 @@
 
 <body>
   <h2> Add School </h2>
-  <form class="form-group" #schoolForm="ngForm" (ngSubmit)='onSubmit()'>
+  <form class="form-group" #schoolForm="ngForm" (ngSubmit)='schoolForm.valid && onSubmit()'>
     <div>
       <label> School Name </label>
-      <input type="text" class="form-control" name="name" id="name" required [(ngModel)]="model.name">
+      <input type="text" class="form-control" name="name" id="name" #name="ngModel" required [(ngModel)]="model.name">
+      <div *ngIf="name.invalid && (name.dirty || schoolForm.submitted)"> Name is required. </div>
     </div>
     <label> Address </label>
     <div>
       <label> Street </label>
-      <input type="text" class="form-control" name="street" id="street" required [(ngModel)]="model.address.street">
+      <input type="text" class="form-control" name="street" id="street" #street="ngModel" required
+        [(ngModel)]="model.address.street">
+      <div *ngIf="street.invalid && (street.dirty || schoolForm.submitted)"> Street is required. </div>
     </div>
     <div>
       <label> Suburb </label>
-      <input type="text" class="form-control" name="suburb" id="suburb" required [(ngModel)]="model.address.suburb">
+      <input type="text" class="form-control" name="suburb" id="suburb" #suburb="ngModel" required
+        [(ngModel)]="model.address.suburb">
+      <div *ngIf="suburb.invalid && (suburb.dirty || schoolForm.submitted)"> Suburb is required. </div>
     </div>
     <div>
       <label> Postcode </label>
-      <input type="text" class="form-control" name="postcode" id="postcode" required [(ngModel)]="model.address.postcode">
+      <input type="text" class="form-control" name="postcode" id="postcode" #postcode="ngModel" required
+        [(ngModel)]="model.address.postcode">
+      <div *ngIf="postcode.invalid && (postcode.dirty || schoolForm.submitted)"> Postal Code is required. </div>
     </div>
     <div>
       <label> State </label>
-      <input type="text" class="form-control" name="state" id="state" required [(ngModel)]="model.address.state">
+      <input type="text" class="form-control" name="state" id="state" #state="ngModel" required
+        [(ngModel)]="model.address.state">
+      <div *ngIf="state.invalid && (state.dirty || schoolForm.submitted)"> State is required. </div>
     </div>
     <div>
       <label> Student Count </label>
-      <input type="text" class="form-control" name="studentCount" id="studentCount" [(ngModel)]="model.studentCount">
+      <input type="number" class="form-control" name="studentCount" id="studentCount" #studentCount="ngModel"
+        [(ngModel)]="model.studentCount">
     </div>
 
     <button class="btn btn-primary" type="submit"> Add school </button>
+    <div *ngIf="schoolForm.invalid && schoolForm.submitted">
+      <p> There are errors in the form </p>
+    </div>
   </form>
 
 </body>

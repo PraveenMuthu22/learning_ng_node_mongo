@@ -13,9 +13,9 @@ export class AddSchoolComponent implements OnInit {
 
   model: ISchool = {
     _id: '',
-    name: 'George Town',
-    address: { street: 'Marple Street', suburb: 'Georgiana', postcode: 56342, state: 'FA' },
-    studentCount: 32
+    name: '',
+    address: { street: '', suburb: '', postcode: '', state: '' },
+    studentCount: 0
   };
   submitted = false;
 
@@ -27,6 +27,14 @@ export class AddSchoolComponent implements OnInit {
         (data: ISchool) => console.log(data),
         (err: any) => console.log(err)
       );
+
+    //reset
+    this.model = {
+      _id: '',
+      name: '',
+      address: { street: '', suburb: '', postcode: '', state: '' },
+      studentCount: 0
+    };
   }
 
   ngOnInit() {
