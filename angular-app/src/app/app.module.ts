@@ -21,7 +21,7 @@ import { SchoolsComponent } from './schools/schools.component';
     FormsModule,
     RouterModule.forRoot([
       {path: 'schools', component: SchoolsComponent},
-      {path: 'school-details', component: SchoolDetailsComponent},
+      {path: 'schools/:id', component: SchoolDetailsComponent},
       {path: '', redirectTo: 'schools', pathMatch: 'full'}
     ])
   ],

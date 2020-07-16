@@ -15,7 +15,7 @@
   <h1> School List </h1>
   <input name="searchValue" [(ngModel)]="searchString" (ngModelChange) = 'filterList()'>
   <ul *ngFor='let school of filteredSchools'>
-    <li> <a [routerLink]="['/school-details']"> {{school.name}} </a> </li>
+    <li> <a [routerLink]="['/schools', school.id]"> {{school.name}} </a> </li>
   </ul>
 
 </body>
