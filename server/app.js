@@ -9,7 +9,11 @@ const schoolModel = require('./models/School');
 
 const schoolRouter = require('./routes/schoolRouter');
 
-const mongoUrl = 'mongodb://localhost/schools';
+// docker
+// const mongodbUrl = 'mongodb://mongo:27017/schools';
+
+// localhost
+const mongodbUrl = 'mongodb://localhost/schools';
 
 const app = express();
 
@@ -28,12 +32,12 @@ app.use(cookieParser());
 app.use('/', schoolRouter);
 
 // connect to database
-mongoose.connect(mongoUrl, { useNewUrlParser: true });
+mongoose.connect(mongodbUrl, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Connected');
+  console.log('MongoDb Connected');
 });
 
 // catch 404 and forward to error handler
@@ -105,6 +109,6 @@ function addSampleSchools() {
 schoolModel.find({}, (err, schools) => {
   if (err) console.log(err);
   else if (schools.length === 0) {
-      addSampleSchools();
-    }
+    addSampleSchools();
+  }
 });

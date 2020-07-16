@@ -12,12 +12,37 @@
 </head>
 
 <body>
-  <h1> Add New School </h1>
-  <form class="form-group pt-2" #schoolForm="ngForm" (ngSubmit)='schoolForm.valid && onSubmit()'>
+  <h2> Add School </h2>
+  <form class="form-group" #schoolForm="ngForm" (ngSubmit)='schoolForm.valid && onSubmit(schoolForm)'>
     <div>
       <label> School Name </label>
       <input type="text" class="form-control" name="name" id="name" #name="ngModel" required [(ngModel)]="model.name">
-      <div *ngIf="name.invalid && (name.dirty || schoolForm.submitted)"> Name is required. </div>
+      <div *ngIf="name.invalid && (name.dirty || schoolForm.submitted) && !submitted" class="alert alert-danger"> Name is required. </div>
+    </div>
+    <h5> Address </h5>
+    <div>
+      <label> Street </label>
+      <input type="text" class="form-control" name="street" id="street" #street="ngModel" required
+        [(ngModel)]="model.address.street">
+      <div *ngIf="street.invalid && (street.dirty || schoolForm.submitted) && !submitted" class="alert alert-danger"> Street is required. </div>
+    </div>
+    <div>
+      <label> Suburb </label>
+      <input type="text" class="form-control" name="suburb" id="suburb" #suburb="ngModel" required
+        [(ngModel)]="model.address.suburb">
+      <div *ngIf="suburb.invalid && (suburb.dirty || schoolForm.submitted) && !submitted" class="alert alert-danger"> Suburb is required. </div>
+    </div>
+    <div>
+      <label> Postcode </label>
+      <input type="text" class="form-control" name="postcode" id="postcode" #postcode="ngModel" required
+        [(ngModel)]="model.address.postcode">
+      <div *ngIf="postcode.invalid && (postcode.dirty || schoolForm.submitted) && !submitted" class="alert alert-danger"> Postal Code is required. </div>
+    </div>
+    <div>
+      <label> State </label>
+      <input type="text" class="form-control" name="state" id="state" #state="ngModel" required
+        [(ngModel)]="model.address.state">
+      <div *ngIf="state.invalid && (state.dirty || schoolForm.submitted) && !submitted" class="alert alert-danger"> State is required. </div>
     </div>
     <div>
       <label> Student Count </label>
@@ -25,39 +50,12 @@
         [(ngModel)]="model.studentCount">
     </div>
 
-    <fieldset>
-      <legend> Address </legend>
-      <div>
-        <label> Street </label>
-        <input type="text" class="form-control" name="street" id="street" #street="ngModel" required
-          [(ngModel)]="model.address.street">
-        <div *ngIf="street.invalid && (street.dirty || schoolForm.submitted)"> Street is required. </div>
-      </div>
-      <div>
-        <label> Suburb </label>
-        <input type="text" class="form-control" name="suburb" id="suburb" #suburb="ngModel" required
-          [(ngModel)]="model.address.suburb">
-        <div *ngIf="suburb.invalid && (suburb.dirty || schoolForm.submitted)"> Suburb is required. </div>
-      </div>
-      <div>
-        <label> Postcode </label>
-        <input type="text" class="form-control" name="postcode" id="postcode" #postcode="ngModel" required
-          [(ngModel)]="model.address.postcode">
-        <div *ngIf="postcode.invalid && (postcode.dirty || schoolForm.submitted)"> Postal Code is required. </div>
-      </div>
-      <div>
-        <label> State </label>
-        <input type="text" class="form-control" name="state" id="state" #state="ngModel" required
-          [(ngModel)]="model.address.state">
-        <div *ngIf="state.invalid && (state.dirty || schoolForm.submitted)"> State is required. </div>
-      </div>
-    </fieldset>
-
-
-
-    <button class="btn btn-primary mt-3" type="submit"> Add school </button>
-    <div *ngIf="schoolForm.invalid && schoolForm.submitted">
+    <button class="btn btn-primary" type="submit"> Add school </button>
+    <div *ngIf="schoolForm.invalid && schoolForm.submitted && !submitted" class="alert alert-danger">
       <p> There are errors in the form </p>
+    </div>
+    <div *ngIf="submitted" class="alert alert-success" role="alert">
+      School Added successfully
     </div>
   </form>
 
