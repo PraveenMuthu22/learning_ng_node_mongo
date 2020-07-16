@@ -1,7 +1,13 @@
-version: '3'
-
+version: '2'
 services:
-    school-app:
-        build: ./server
-    ports: 
-        - 49160:3000
+  mongo:
+    container_name: mongo
+    image: 'mongo:3.4.1'
+    ports:
+      - "27017:27017" 
+  app:
+    container_name: school-backend
+    restart: always
+    build: ./server
+    ports:
+      - "3000:3000"
