@@ -1,4 +1,5 @@
 const express = require('express');
+const schoolService = require('../services/schoolService');
 
 const router = express.Router();
 
@@ -12,6 +13,7 @@ router.get('/:schoolId', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+  schoolService.addSchool(req.body);
   res.send('Add school');
 });
 
