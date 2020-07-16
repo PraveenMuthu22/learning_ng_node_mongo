@@ -54,6 +54,9 @@
     <div *ngIf="schoolForm.invalid && schoolForm.submitted" class="alert alert-danger">
       <p> There are errors in the form </p>
     </div>
+    <div *ngIf="schoolForm.valid && schoolForm.submitted" class="alert alert-success" role="alert">
+      School Added successfully
+    </div>
   </form>
 
 </body>
