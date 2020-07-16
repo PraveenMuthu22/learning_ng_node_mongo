@@ -23,9 +23,8 @@ export class SchoolsComponent implements OnInit {
   }
 
   filterList() {
-    this.filteredSchools = this.schools.filter(s => s.name.includes(this.searchString));
+    this.filteredSchools = this.schools.filter(s => s.name.toLowerCase().includes(this.searchString.toLowerCase()));
   }
-
 
   getSchools(): void {
     this.schoolService.getAllSchools().subscribe({
