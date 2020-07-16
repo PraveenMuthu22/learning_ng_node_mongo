@@ -10,10 +10,10 @@ const schoolModel = require('./models/School');
 const schoolRouter = require('./routes/schoolRouter');
 
 // docker
-// const mongodbUrl = 'mongodb://mongo:27017/schools';
+const mongodbUrl = 'mongodb://mongo:27017/schools';
 
 // localhost
-const mongodbUrl = 'mongodb://localhost/schools';
+// const mongodbUrl = 'mongodb://localhost/schools';
 
 const app = express();
 
