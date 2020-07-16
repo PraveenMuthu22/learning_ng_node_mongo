@@ -10,31 +10,7 @@ import { ISchool } from './Interfaces/ISchool';
 export class AppComponent {
   title = 'angular-app';
 
-  constructor(private schoolService: SchoolsService) { }
 
-  schools: ISchool[];
-  filteredSchools: ISchool[];
-  errorMessage: string;
-  searchString: string;
-
-  ngOnInit(): void {
-    this.getSchools();
-  }
-
-  filterList() {
-    this.filteredSchools = this.schools.filter(s => s.name.includes(this.searchString));
-  }
-
-
-  getSchools(): void {
-    this.schoolService.getAllSchools().subscribe({
-      next: schools => {
-        this.schools = schools;
-        this.filteredSchools = schools;
-      },
-      error: err => this.errorMessage = err
-    });
-  }
 }
 
 
