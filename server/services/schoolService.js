@@ -20,17 +20,12 @@ exports.addSchool = (school) => {
     }
 };
 
-exports.searchSchoolByName = (searchString) => {
-    const searchStrings = searchString.split(' ');
-    console.log(searchStrings);
-
-    return model.find(
-        { name: new RegExp(searchString) }, (err, doc) => {
-            if (err) return err;
-            return doc;
-        },
-    );
-};
+exports.getSchoolById = (id) => model.findById(
+    id, (err, doc) => {
+        if (err) return err;
+        return doc;
+    },
+);
 
 exports.getAllSchools = () => model.find(
     {}, (err, doc) => {

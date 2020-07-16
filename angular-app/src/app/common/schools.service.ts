@@ -15,4 +15,9 @@ export class SchoolsService {
   getAllSchools(): Observable<ISchool[]> {
     return this.http.get<ISchool[]>(this.url);
   }
+
+  getSchoolById(id): Observable<ISchool> {
+    const extension = `/${id}`;
+    return this.http.get<ISchool>(this.url + extension);
+  }
 }

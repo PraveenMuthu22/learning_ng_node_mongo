@@ -9,8 +9,8 @@ router.get('/', async (req, res, next) => {
   res.send(response);
 });
 
-router.get('/:searchString', async (req, res, next) => {
-  const response = await schoolService.searchSchoolByName(req.params.searchString);
+router.get('/:id', async (req, res, next) => {
+  const response = await schoolService.getSchoolById(req.params.id);
   console.log(response);
   res.send(response);
 });
