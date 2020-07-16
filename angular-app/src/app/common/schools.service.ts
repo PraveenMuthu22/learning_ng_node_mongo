@@ -10,5 +10,9 @@ import { Observable } from 'rxjs';
 export class SchoolsService {
   private url = 'http://localhost:3000';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getAllSchools(): Observable<ISchool[]> {
+    return this.http.get<ISchool[]>(this.url);
+  }
 }
