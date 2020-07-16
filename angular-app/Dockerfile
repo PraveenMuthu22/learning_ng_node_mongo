@@ -1,20 +1,23 @@
-# Build from Node version 11
-FROM node:11.15.0-alpine as build-step
+# Create image based on the official Node 10 image from dockerhub
+FROM node:12
 
-# Define app directory inside image
+# Create a directory where our app will be placed
+RUN mkdir -p /app
+
+# Change directory so that our commands run inside this new directory
 WORKDIR /app
 
-# package.json AND package-lock.json are copied where available 
-COPY package*.json /app/
+# Copy dependency definitions
+COPY package*.json ./
 
-# install modules
-RUN npm install
+# Install dependecies
+RUN npm --verbose install
 
-# Bundle app source
-COPY . /app/
+# Get all the code needed to run the app
+COPY . .
 
-# Port to expose
+# Expose the port the app runs in
 EXPOSE 4200
 
-# command to run app
-CMD npm run start
+# Serve the app
+CMD ["npm", "start"]
