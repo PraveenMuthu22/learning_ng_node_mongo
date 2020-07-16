@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SchoolDetailsComponent implements OnInit {
 
-  constructor(private schoolService: SchoolsService, private route: ActivatedRoute) { }
+  constructor(private schoolService: SchoolsService, private route: ActivatedRoute, private router: Router) { }
 
   school: ISchool;
   errorMessage: string;
@@ -21,6 +21,10 @@ export class SchoolDetailsComponent implements OnInit {
       next: school => this.school = school,
       error: err => this.errorMessage = err
     });
+  }
+
+  back(){
+    this.router.navigate(['/schools']);
   }
 
 }
