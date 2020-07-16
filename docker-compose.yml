@@ -5,9 +5,18 @@ services:
     image: 'mongo:3.4.1'
     ports:
       - "27017:27017" 
-  app:
+  backend-app:
     container_name: school-backend
     restart: always
     build: ./server
     ports:
       - "3000:3000"
+  frontend-app:
+    container_name: angular-frontend
+    restart: always
+    build: ./angular-app
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
+    ports:
+      - "4200:4200"
