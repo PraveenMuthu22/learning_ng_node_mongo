@@ -12,13 +12,43 @@
 </head>
 
 <body>
-  <h1> School List </h1>
-  <input name="searchValue" [(ngModel)]="searchString" (ngModelChange) = 'filterList()'>
-  <ul *ngFor='let school of filteredSchools'>
-    <li> <a [routerLink]="['/schools', school._id]"> {{school.name}} </a> </li>
-  </ul>
+  <div class="container">
+    <div class="row pt-3">
+      <div class="col-lg-4 col-md-6">
+        <h1> School List </h1>
+        <div class="pt-2">
+          <input class="form-control" placeholder="Filter by name" name="searchValue" [(ngModel)]="searchString"
+            (ngModelChange)='filterList()'>
+          <div class="mt-3" style="overflow-y: auto; height: 75vh;">
+            <div *ngFor='let school of filteredSchools'>
 
-  <app-add-school></app-add-school>
+
+              <div class="card">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-8">
+                      <h5 class="card-title">{{school.name}}</h5>
+                      <p class="card-text">{{school.address.suburb}} | {{school.studentCount}} students</p>
+                    </div>
+                    <div class="col-4 text-right">
+                      <a class="btn btn-primary" [routerLink]="['/schools', school._id]">Go</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-6">
+        <app-add-school></app-add-school>
+      </div>
+    </div>
+  </div>
+
+
 
 </body>
 

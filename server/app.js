@@ -5,8 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const schoolModel = require('./models/School');
 
 const schoolRouter = require('./routes/schoolRouter');
+
+const mongoUrl = 'mongodb://localhost/schools';
 
 const app = express();
 
@@ -25,7 +28,7 @@ app.use(cookieParser());
 app.use('/', schoolRouter);
 
 // connect to database
-mongoose.connect('mongodb://localhost/schools', { useNewUrlParser: true });
+mongoose.connect(mongoUrl, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -50,3 +53,58 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+function addSampleSchools() {
+  const sch1 = {
+    name: 'Royal Academy',
+    address: {
+      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
+    },
+    studentCount: 85,
+  };
+
+  const sch2 = {
+    name: 'Hodgens Highschool',
+    address: {
+      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
+    },
+    studentCount: 85,
+  };
+
+  const sch3 = {
+    name: 'Hopkins Elementary',
+    address: {
+      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
+    },
+    studentCount: 85,
+  };
+
+  const sch4 = {
+    name: 'Roland Gilliard',
+    address: {
+      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
+    },
+    studentCount: 85,
+  };
+
+  schoolModel.create(sch1, (error) => {
+    if (error) { console.log('Error adding school ', error); }
+  });
+  schoolModel.create(sch2, (error) => {
+    if (error) { console.log('Error adding school ', error); }
+  });
+  schoolModel.create(sch3, (error) => {
+    if (error) { console.log('Error adding school ', error); }
+  });
+  schoolModel.create(sch4, (error) => {
+    if (error) { console.log('Error adding school ', error); }
+  });
+}
+
+// add sample schools
+schoolModel.find({}, (err, schools) => {
+  if (err) console.log(err);
+  else if (schools.length === 0) {
+      addSampleSchools();
+    }
+});

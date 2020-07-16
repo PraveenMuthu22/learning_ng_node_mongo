@@ -12,14 +12,22 @@
 </head>
 
 <body>
-  <h1> School Details </h1>
+  <div class="container">
+    <div class="row pt-3">
+      <div class="col">
+        <h1> School Details </h1>
 
-  <p> {{school?.name}} </p> 
-  <p> {{school?.address.street}} </p> 
-  <p> {{school?.address.suburb}} </p> 
-  <p> {{school?.address.postcode}} </p> 
-  <p> {{school?.address.state}} </p> 
-  <p> {{school?.studentCount}} </p> 
+        <p><b>Name:</b> {{school?.name}} </p>
+        <p><b>No. of Students:</b> {{school?.studentCount}} </p>
+        <p><b>Street:</b> {{school?.address.street}} </p>
+        <p><b>Suburb:</b> {{school?.address.suburb}} </p>
+        <p><b>Postcode:</b> {{school?.address.postcode}} </p>
+        <p><b>State:</b> {{school?.address.state}} </p>
+      </div>
+    </div>
+  </div>
+
+
 </body>
 
 </html>
