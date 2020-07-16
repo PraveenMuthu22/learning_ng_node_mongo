@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolsService } from '../common/schools.service';
 import { ISchool } from '../Interfaces/ISchool';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-school',
@@ -19,7 +20,7 @@ export class AddSchoolComponent implements OnInit {
   };
   submitted = false;
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     this.submitted = true;
     console.log(this.model);
     this.schoolService.addSchool(this.model)
@@ -28,13 +29,10 @@ export class AddSchoolComponent implements OnInit {
         (err: any) => console.log(err)
       );
 
-    //reset
-    this.model = {
-      _id: '',
-      name: '',
-      address: { street: '', suburb: '', postcode: '', state: '' },
-      studentCount: 0
-    };
+    form.resetForm();
+    this.submitted = true;
+
+    setTimeout(() => this.submitted = false, 2000);
   }
 
   ngOnInit() {

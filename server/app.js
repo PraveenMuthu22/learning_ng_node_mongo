@@ -9,9 +9,11 @@ const schoolModel = require('./models/School');
 
 const schoolRouter = require('./routes/schoolRouter');
 
-const mongodbUrl = 'mongodb://mongo:27017/schools';
-// const mongodbUrl = 'mongodb://localhost/schools';
+// docker
 // const mongodbUrl = 'mongodb://mongo:27017/schools';
+
+// localhost
+const mongodbUrl = 'mongodb://localhost/schools';
 
 const app = express();
 
@@ -36,8 +38,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('MongoDb Connected');
-  console.log('port!!!!!!');
-  console.log(process.env.PORT);
 });
 
 // catch 404 and forward to error handler
