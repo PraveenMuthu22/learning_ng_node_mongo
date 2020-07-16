@@ -1,4 +1,4 @@
-const School = require('../models/School');
+const model = require('../models/School');
 
 exports.addSchool = (school) => {
     // validation
@@ -11,15 +11,23 @@ exports.addSchool = (school) => {
         && 'studentCount' in school && typeof school.studentCount === 'number'
     ) {
         console.log('valid school');
+
+        model.create(school, (error) => {
+            if (error) { console.log('Error adding school ', error); }
+        });
     } else {
         console.log('school invalid');
     }
-
-    // School.create(school, (error) => {
-    //     if (error) { console.log('Error adding school ', error); }
-    // });
 };
 
-exports.getSchoolById = () => {
+exports.searchSchoolByName = (searchString) => {
+    const searchStrings = searchString.split(' ');
+    console.log(searchStrings);
 
-}
+    return model.find(
+        { name: new RegExp(searchString) }, (err, doc) => {
+            if (err) return err;
+            return doc;
+        },
+    );
+};

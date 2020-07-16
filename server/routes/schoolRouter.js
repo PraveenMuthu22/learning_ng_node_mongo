@@ -8,8 +8,10 @@ router.get('/', (req, res, next) => {
   res.send('All schools');
 });
 
-router.get('/:schoolId', (req, res, next) => {
-  res.send(`Specific school : ${req.params.schoolId}`);
+router.get('/:searchString', async (req, res, next) => {
+  const response = await schoolService.searchSchoolByName(req.params.searchString);
+  console.log(response);
+  res.send(response);
 });
 
 router.post('/', (req, res, next) => {
