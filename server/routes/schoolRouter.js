@@ -4,8 +4,9 @@ const schoolService = require('../services/schoolService');
 const router = express.Router();
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  res.send('All schools');
+router.get('/', async (req, res, next) => {
+  const response = await schoolService.getAllSchools();
+  res.send(response);
 });
 
 router.get('/:searchString', async (req, res, next) => {

@@ -31,3 +31,10 @@ exports.searchSchoolByName = (searchString) => {
         },
     );
 };
+
+exports.getAllSchools = () => model.find(
+    {}, (err, doc) => {
+        if (err) return err;
+        return doc;
+    },
+);
