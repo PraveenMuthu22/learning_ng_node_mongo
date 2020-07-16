@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { SchoolsService } from './common/schools.service';
-import { ISchool } from './Interfaces/ISchool';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,12 @@ import { ISchool } from './Interfaces/ISchool';
 })
 export class AppComponent {
   title = 'angular-app';
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.router.navigate(['/schools']);
+  }
 
 
 }
