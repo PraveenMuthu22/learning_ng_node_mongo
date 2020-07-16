@@ -1,6 +1,9 @@
 const model = require('../models/School');
 
 exports.addSchool = (school) => {
+    // remove id if it existse
+    delete school._id;
+
     // validation
     if ('name' in school && typeof school.name === 'string'
         && 'address' in school && typeof school.address === 'object'

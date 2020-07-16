@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { SchoolDetailsComponent } from './school-details/school-details.component';
 import { RouterModule } from '@angular/router';
 import { SchoolsComponent } from './schools/schools.component';
+import { AddSchoolComponent } from './add-school/add-school.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchoolDetailsComponent,
-    SchoolsComponent
+    SchoolsComponent,
+    AddSchoolComponent
   ],
   imports: [
     BrowserModule,
