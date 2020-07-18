@@ -1,5 +1,6 @@
 const express = require('express');
 const schoolService = require('../services/schoolService');
+const messages = require('../constants/messages');
 
 const router = express.Router();
 
@@ -15,9 +16,14 @@ router.get('/:id', async (req, res, next) => {
   res.send(response);
 });
 
-router.post('/', (req, res, next) => {
-  schoolService.addSchool(req.body);
-  res.send('Add school');
+router.post('/', async (req, res, next) => {
+  const response = await schoolService.addSchool(req.body);
+  console.log('response', response);
+  if (response === 200) {
+    res.send(200);
+  } else {
+    res.status(500).send(response);
+  }
 });
 
 module.exports = router;

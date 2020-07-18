@@ -1,4 +1,5 @@
 const model = require('../models/School');
+const messages = require('../constants/messages');
 
 exports.addSchool = (school) => {
     // remove id if it existse
@@ -15,12 +16,18 @@ exports.addSchool = (school) => {
     ) {
         console.log('valid school');
 
-        model.create(school, (error) => {
-            if (error) { console.log('Error adding school ', error); }
+        return model.create(school, (schl, error) => {
+            if (error) {
+                return error;
+            } if (schl) {
+                console.log(schl);
+                return 200;
+            }
+            return messages.INTERNAL_SERVER_ERROR;
         });
-    } else {
-        console.log('school invalid');
     }
+    console.log('school invalid');
+    return messages.REQUEST_DATA_INVALID;
 };
 
 exports.getSchoolById = (id) => model.findById(
