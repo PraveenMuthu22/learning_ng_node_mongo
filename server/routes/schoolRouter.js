@@ -26,12 +26,13 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const response = await schoolService.addSchool(req.body);
-  console.log('response', response);
-  if (response === 200) {
+  try {
+    const response = await schoolService.addSchool(req.body);
+    console.log('response_schoolrouter', response);
     res.send(200);
-  } else {
-    res.status(500).send(response);
+  } catch (error) {
+    console.log('response', error);
+    res.status(500).send(messages.ERROR_OCCURED_SAVING_RECORD);
   }
 });
 

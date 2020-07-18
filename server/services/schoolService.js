@@ -18,10 +18,8 @@ exports.addSchool = (school) => {
 
         return model.create(school, (schl, error) => {
             if (error) {
-                console.log(error);
                 return error;
             } if (schl) {
-                console.log(schl);
                 return 200;
             }
             return messages.INTERNAL_SERVER_ERROR;
