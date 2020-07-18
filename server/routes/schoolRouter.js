@@ -11,9 +11,18 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:id', async (req, res, next) => {
-  const response = await schoolService.getSchoolById(req.params.id);
-  console.log(response);
-  res.send(response);
+  try {
+    const response = await schoolService.getSchoolById(req.params.id);
+    console.log('response', response);
+    if (response !== null) {
+      res.send(response);
+    } else {
+      res.status(404).send(messages.RECORD_NOT_FOUND);
+    }
+  } catch (error) {
+    console.log('response', error);
+    res.status(500).send(messages.ERROR_OCCURED_RETRIEVING_RECORD);
+  }
 });
 
 router.post('/', async (req, res, next) => {

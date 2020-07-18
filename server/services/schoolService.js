@@ -18,6 +18,7 @@ exports.addSchool = (school) => {
 
         return model.create(school, (schl, error) => {
             if (error) {
+                console.log(error);
                 return error;
             } if (schl) {
                 console.log(schl);
@@ -32,7 +33,10 @@ exports.addSchool = (school) => {
 
 exports.getSchoolById = (id) => model.findById(
     id, (err, doc) => {
-        if (err) return err;
+        if (err) {
+            console.log(err);
+            return err;
+        }
         return doc;
     },
 );
