@@ -21,6 +21,10 @@ export class SchoolsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSchools();
+
+    this.schoolService.listenForUpdates().subscribe(() => {
+      setTimeout(() => this.getSchools(), 500);
+    });
   }
 
   filterList() {
@@ -32,6 +36,7 @@ export class SchoolsComponent implements OnInit {
       next: schools => {
         this.schools = schools;
         this.filteredSchools = schools;
+        console.log(this.filteredSchools);
       },
       error: err => this.errorMessage = err
     });
