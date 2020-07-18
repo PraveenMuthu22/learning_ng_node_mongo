@@ -36,7 +36,6 @@ export class SchoolsComponent implements OnInit {
       next: schools => {
         this.schools = schools;
         this.filteredSchools = schools;
-        console.log(this.filteredSchools);
       },
       error: err => this.errorMessage = err
     });

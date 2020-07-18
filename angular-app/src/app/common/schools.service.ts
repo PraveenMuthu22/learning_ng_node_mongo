@@ -24,13 +24,13 @@ export class SchoolsService {
     return this.http.get<ISchool>(this.url + extension);
   }
 
-  addSchool(school: ISchool): Observable<ISchool> {
+  addSchool(school: ISchool): Observable<any> {
+    return this.http.post<any>(this.url, school,
+      { responseType: 'text' });
+  }
+
+  forceUpdate() {
     this.schoolsSubject$.next();
-    return this.http.post<ISchool>(this.url, school, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
   }
 
   listenForUpdates() {
