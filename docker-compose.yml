@@ -1,19 +1,19 @@
 version: '2'
-services:
-  mongo:
-    container_name: mongo
-    image: 'mongo:3.4.1'
-    ports:
-      - "27017:27017" 
-  backend-app:
-    container_name: school-backend
-    restart: always
+services: 
+  backend-app: 
     build: ./server
-    ports:
+    container_name: school-backend
+    ports: 
       - "3000:3000"
-  frontend-app:
-    container_name: angular-frontend
     restart: always
+  frontend-app: 
     build: ./angular-app
-    ports:
+    container_name: angular-frontend
+    ports: 
       - "4200:4200"
+    restart: always
+  mongo: 
+    container_name: mongo
+    image: "mongo:3.4.1"
+    ports: 
+      - "27017:27017"

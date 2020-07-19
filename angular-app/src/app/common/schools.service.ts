@@ -25,8 +25,8 @@ export class SchoolsService {
   }
 
   addSchool(school: ISchool): Observable<any> {
-    return this.http.post<any>(this.url, school,
-      { responseType: 'text' });
+    return this.http.post<string>(this.url, school,
+      { responseType: 'text' as 'json' });
   }
 
   forceUpdate() {
