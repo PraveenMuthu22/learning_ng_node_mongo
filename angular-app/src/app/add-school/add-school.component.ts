@@ -16,6 +16,7 @@ export class AddSchoolComponent implements OnInit {
     _id: '',
     name: '',
     address: '',
+    boarding: false,
     studentCount: 0
   };
   submitted = false;

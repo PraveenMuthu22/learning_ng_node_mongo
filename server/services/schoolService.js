@@ -8,6 +8,7 @@ exports.addSchool = (school) => {
     // validation
     if ('name' in school && typeof school.name === 'string'
         && 'address' in school && typeof school.address === 'string'
+        && 'boarding' in school && typeof school.boarding === 'boolean'
         && 'studentCount' in school && typeof school.studentCount === 'number'
     ) {
         console.log('valid school');

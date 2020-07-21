@@ -1,33 +1,25 @@
 <form class="form-group" #schoolForm="ngForm" (ngSubmit)='schoolForm.valid && onSubmit(schoolForm)'>
-  <div>
-    <label> School Name </label>
+  <div class="form-group">
+    <label class="form-input-label" for="name"> School Name </label>
     <input type="text" class="form-control" name="name" id="name" #name="ngModel" required [(ngModel)]="model.name">
   </div>
-  <h5> Address </h5>
-  <div>
-    <label> Street </label>
-    <input type="text" class="form-control" name="street" id="street" #street="ngModel" required
-      [(ngModel)]="model.address.street">
+  <div class="form-group">
+    <label class="form-input-label" for="address"> Address </label>
+    <input type="text" class="form-control" name="address" id="address" #address="ngModel" required
+      [(ngModel)]="model.address">
   </div>
-  <div>
-    <label> Suburb </label>
-    <input type="text" class="form-control" name="suburb" id="suburb" #suburb="ngModel" required
-      [(ngModel)]="model.address.suburb">
-  </div>
-  <div>
-    <label> Postcode </label>
-    <input type="text" class="form-control" name="postcode" id="postcode" #postcode="ngModel" required
-      [(ngModel)]="model.address.postcode">
-  </div>
-  <div>
-    <label> State </label>
-    <input type="text" class="form-control" name="state" id="state" #state="ngModel" required
-      [(ngModel)]="model.address.state">
-  </div>
-  <div>
-    <label> Student Count </label>
+  <div class="form-group">
+    <label class="form-input-label" for="studentCount"> Student Count </label>
     <input type="number" class="form-control" name="studentCount" id="studentCount" #studentCount="ngModel" required
       [(ngModel)]="model.studentCount">
+  </div>
+
+  <div class="form-check form-group">
+    <input class="form-check-input" type="checkbox" id="boarding" name="boarding" #boarding="ngModel" required
+      [(ngModel)]="model.boarding">
+    <label class="form-check-label" for="boarding">
+      Boarding
+    </label>
   </div>
 
   <button class="btn btn-primary" type="submit"> Add school </button>

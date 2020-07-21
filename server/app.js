@@ -61,33 +61,29 @@ module.exports = app;
 function addSampleSchools() {
   const sch1 = {
     name: 'Royal Academy',
-    address: {
-      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
-    },
+    address: 'Marple Street, Lombardy, 12353, WP',
+    boarding: true,
     studentCount: 85,
   };
 
   const sch2 = {
     name: 'Hodgens Highschool',
-    address: {
-      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
-    },
+    address: 'Marple Street, Lombardy, 12353, WP',
+    boarding: true,
     studentCount: 85,
   };
 
   const sch3 = {
     name: 'Hopkins Elementary',
-    address: {
-      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
-    },
+    address: 'Marple Street, Lombardy, 12353, WP',
+    boarding: false,
     studentCount: 85,
   };
 
   const sch4 = {
     name: 'Roland Gilliard',
-    address: {
-      street: 'Marple Street', suburb: 'Lombardy', postcode: '12353', state: 'WP'
-    },
+    address: 'Marple Street, Lombardy, 12353, WP',
+    boarding: false,
     studentCount: 85,
   };
 

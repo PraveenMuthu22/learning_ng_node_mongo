@@ -17,21 +17,23 @@ export class BasicSchoolsComponent implements OnInit {
     _id: '',
     name: '',
     address: '',
+    boarding: false,
     studentCount: 0
   };
   submitted = false;
 
   onSubmit(form: NgForm) {
     this.submitted = true;
-    this.schoolService.addSchool(this.model)
-      .subscribe(
-        (data: ISchool) => {
-          this.schoolService.forceUpdate();
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      );
+    console.log(this.model);
+    // this.schoolService.addSchool(this.model)
+    //   .subscribe(
+    //     (data: ISchool) => {
+    //       this.schoolService.forceUpdate();
+    //     },
+    //     (err: any) => {
+    //       console.log(err);
+    //     }
+    //   );
 
     form.resetForm();
     this.submitted = true;
