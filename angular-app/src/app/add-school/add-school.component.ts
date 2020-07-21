@@ -23,19 +23,23 @@ export class AddSchoolComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.submitted = true;
-    this.schoolService.addSchool(this.model)
-      .subscribe(
-        (data: ISchool) => {
-          this.schoolService.forceUpdate();
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      );
+    // this.schoolService.addSchool(this.model)
+    //   .subscribe(
+    //     (data: ISchool) => {
+    //       this.schoolService.forceUpdate();
+    //     },
+    //     (err: any) => {
+    //       console.log(err);
+    //     }
+    //   );
 
     form.resetForm();
     this.submitted = true;
     setTimeout(() => this.submitted = false, 2000);
+  }
+
+  onBlur(field) {
+    console.log(field);
   }
 
   ngOnInit() {

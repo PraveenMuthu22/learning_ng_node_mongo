@@ -1,0 +1,6 @@
+<form class="form-group" #schoolForm="ngForm" (ngSubmit)='schoolForm.valid && onSubmit(schoolForm)'>
+    <div [class.field-error]="schoolForm.submitted && name.invalid">
+        <label> School Name </label>
+        <input type="text" class="form-control" name="name" id="name" #name="ngModel" required [(ngModel)]="model.name" (blur)="onBlur(name)">
+    </div>
+</form>
