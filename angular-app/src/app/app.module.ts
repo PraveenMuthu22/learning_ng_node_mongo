@@ -24,7 +24,7 @@ import { BasicSchoolsComponent } from './basic-schools/basic-schools.component';
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      {path: 'schools', component: BasicSchoolsComponent},
+      {path: 'schools', component: SchoolsComponent},
       {path: 'schools/:id', component: SchoolDetailsComponent},
       {path: '', redirectTo: 'schools', pathMatch: 'full'}
     ])
