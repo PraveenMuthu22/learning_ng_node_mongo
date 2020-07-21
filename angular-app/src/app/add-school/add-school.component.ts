@@ -38,10 +38,6 @@ export class AddSchoolComponent implements OnInit {
     setTimeout(() => this.submitted = false, 2000);
   }
 
-  onBlur(field) {
-    console.log(field);
-  }
-
   ngOnInit() {
   }
 
