@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { SchoolsService } from '../common/schools.service';
 import { ISchool } from '../Interfaces/ISchool';
+import { SchoolsService } from '../common/schools.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-school',
-  templateUrl: './add-school.component.html',
-  styleUrls: ['./add-school.component.css']
+  selector: 'app-basic-schools',
+  templateUrl: './basic-schools.component.html',
+  styleUrls: ['./basic-schools.component.css']
 })
-export class AddSchoolComponent implements OnInit {
+export class BasicSchoolsComponent implements OnInit {
 
+  
   constructor(private schoolService: SchoolsService) { }
 
   model: ISchool = {
@@ -39,5 +40,4 @@ export class AddSchoolComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

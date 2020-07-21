@@ -8,13 +8,15 @@ import { SchoolDetailsComponent } from './school-details/school-details.componen
 import { RouterModule } from '@angular/router';
 import { SchoolsComponent } from './schools/schools.component';
 import { AddSchoolComponent } from './add-school/add-school.component';
+import { BasicSchoolsComponent } from './basic-schools/basic-schools.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SchoolDetailsComponent,
     SchoolsComponent,
-    AddSchoolComponent
+    AddSchoolComponent,
+    BasicSchoolsComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,7 @@ import { AddSchoolComponent } from './add-school/add-school.component';
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      {path: 'schools', component: SchoolsComponent},
+      {path: 'schools', component: BasicSchoolsComponent},
       {path: 'schools/:id', component: SchoolDetailsComponent},
       {path: '', redirectTo: 'schools', pathMatch: 'full'}
     ])
