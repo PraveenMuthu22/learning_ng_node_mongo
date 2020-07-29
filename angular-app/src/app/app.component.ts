@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observer, from, Observable, of, fromEvent, Subscription } from 'rxjs';
+import { filter, map, timeout } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +15,15 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.router.navigate(['/schools']);
+
+    const currentTime$ = Observable.create(subscriber => {
+      const timeString = new Date().toLocaleTimeString();
+      subscriber.next(timeString);
+      subscriber.complete();
+    });
+
+    const subscription: Subscription = currentTime$.subscribe(
+      currentTime => console.log(`Observer 1 : ${currentTime}`)
+    );
   }
-
-
 }
-
-
