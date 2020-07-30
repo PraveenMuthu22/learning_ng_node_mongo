@@ -16,18 +16,27 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.navigate(['/schools'])
 
-    const source$ = of(1, 2, 3, 4, 5);
+    const numbers$ = of(1, 2, 3, 4, 5);
 
-    function multiply(multiplier) {
-      return map(val => val * multiplier);
+    function multiplyOperator(multiplier) {
+      return source$ => {
+        return new Observable(subscriber => {
+          source$.subscribe(
+            num => subscriber.next(num * multiplier)
+          );
+        });
+      };
     }
 
-    source$
+    numbers$
       .pipe(
-        multiply(2)
+        multiplyOperator(2)
       )
       .subscribe(
         value => console.log(`Observer : ${value}`),
       );
   }
+
+
 }
+
