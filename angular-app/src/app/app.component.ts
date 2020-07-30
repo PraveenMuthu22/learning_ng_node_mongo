@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observer, from, Observable, of, fromEvent, Subscription, throwError } from 'rxjs';
-import { filter, map, timeout, catchError } from 'rxjs/operators';
+import { filter, map, timeout, catchError, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -16,28 +16,18 @@ export class AppComponent {
   ngOnInit(): void {
     this.router.navigate(['/schools'])
 
-    const currentTime$ = Observable.create(subscriber => {
-      const numbers = [1, 3, 5, 8, 7, 9, 13, 16, 21];
-      // const numbers = [1, 3, 5, 7, 9, 13, 16, 21];
+    const source$ = of(1, 2, 3, 4, 5);
 
-      numbers.forEach(number => {
-        if (number % 2 !== 0) {
-          subscriber.next(number);
-        } else {
-          subscriber.error(number);
-        }
-      });
-      subscriber.complete();
-    });
+    function multiply(multiplier) {
+      return map(val => val * multiplier);
+    }
 
-    const subscription: Subscription = currentTime$
+    source$
       .pipe(
-        catchError(err => {
-          return throwError(`${err} is not a odd number`);
-        }))
+        multiply(2)
+      )
       .subscribe(
         value => console.log(`Observer : ${value}`),
-        error => console.log(`Observer Error : ${error}`)
       );
   }
 }
