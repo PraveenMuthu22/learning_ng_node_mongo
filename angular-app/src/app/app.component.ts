@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observer, from, Observable, of, fromEvent, Subscription, throwError } from 'rxjs';
-import { filter, map, timeout, catchError, take } from 'rxjs/operators';
+import { Observer, Subject, from, Observable, of, interval, fromEvent, Subscription, throwError } from 'rxjs';
+import { filter, map, timeout, catchError, take, multicast, refCount, publish, share, publishBehavior, publishLast, publishReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,29 +14,30 @@ export class AppComponent {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/schools'])
+    this.router.navigate(['/schools']);
 
-    const numbers$ = of(1, 2, 3, 4, 5);
+    const source$ = interval(1000).pipe(
+      take(4),
+      publishReplay(),
+      refCount()
+    );
 
-    function multiplyOperator(multiplier) {
-      return source$ => {
-        return new Observable(subscriber => {
-          source$.subscribe(
-            num => subscriber.next(num * multiplier)
-          );
-        });
-      };
-    }
+    source$.subscribe(value => console.log(`Observer 1: ${value}`));
 
-    numbers$
-      .pipe(
-        multiplyOperator(2)
-      )
-      .subscribe(
-        value => console.log(`Observer : ${value}`),
-      );
+    setTimeout(() => {
+      source$.subscribe(value => console.log(`Observer 2: ${value}`));
+    }, 1000);
+
+    setTimeout(() => {
+      source$.subscribe(value => console.log(`Observer 3: ${value}`));
+    }, 3000);
+
+    setTimeout(() => {
+      source$.subscribe(
+        value => console.log(`Observer 4: ${value}`),
+        error => null,
+        () => console.log('Observer 4 completed')
+        );
+    }, 4500);
   }
-
-
 }
-
